@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TRAG - Official App Download</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/TRAG.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+</head>
+<body>
+
+ <div class="cursor"></div>
+  <script src="./assets/script.js"></script>
+
+  <button id="theme-toggle" class="theme-toggle">🌙</button>
+
+  <section class="hero" id="download">
+    <lottie-player
+      id="main-lottie"
+      src="./assets/Animation - 1749467163465.json"
+      background="transparent"
+      speed="1"
+      style="width: 200px; height: 200px; margin-bottom: 1rem;"
+      loop
+      autoplay>
+    </lottie-player>
+
+    <div class="hero-image"></div>
+
+    <h1>Download the TRAG App</h1>
+    <p>Fast. Secure. Made for You.</p>
+
+    <a href="https://drive.google.com/file/d/14Q-X1d-E4lCaBGx17CDyWEk_vnr0-Z62/view?usp=sharing" class="btn" download>Download APK</a>
+
+    <div class="social-links">
+      <a href="mailto:getintotrag@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+      <!-- <a href="https://wa.me/9791885600" target="_blank"><i class="fab fa-whatsapp"></i></a> -->
+      <a href="https://www.instagram.com/tragfied?igsh=MXM1Z3pvdjQzdDUxYw==" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+  </section>
+<script>
+    const cursor = document.querySelector(".cursor");
+
+let mouseX = 0, mouseY = 0;
+let cursorX = 0, cursorY = 0;
+
+function animate() {
+  cursorX += (mouseX - cursorX) * 0.1;
+  cursorY += (mouseY - cursorY) * 0.1;
+  cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)${cursor.classList.contains('active') ? ' scale(1.5)' : ''}`;
+  requestAnimationFrame(animate);
+}
+
+document.addEventListener("mousemove", (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+// Interactive effect on click
+document.addEventListener("mousedown", () => {
+  cursor.classList.add("active");
+});
+document.addEventListener("mouseup", () => {
+  cursor.classList.remove("active");
+});
+
+// Interactive effect on hover for links, buttons, inputs
+["a", "button", ".btn", "input", "textarea", "select", ".theme-toggle", ".about-button"].forEach(sel => {
+  document.querySelectorAll(sel).forEach(el => {
+    el.addEventListener("mouseenter", () => cursor.classList.add("active"));
+    el.addEventListener("mouseleave", () => cursor.classList.remove("active"));
+  });
+});
+
+animate();
+
+</script>
+
+<script>
+  // Random Lottie animation on refresh
+  const lottieFiles = [
+    "./assets/Animation - 1749467163465.json",
+    "./assets/Animation - 1749463725336.json"
+    // Add more Lottie JSON filenames here
+  ];
+  const lottiePlayer = document.getElementById("main-lottie");
+  if (lottiePlayer && lottieFiles.length > 1) {
+    const randomIndex = Math.floor(Math.random() * lottieFiles.length);
+    lottiePlayer.setAttribute("src", lottieFiles[randomIndex]);
+  }
+</script>
+
+<script>
+    const toggleBtn = document.getElementById("theme-toggle");
+    const body = document.body;
+
+    toggleBtn.addEventListener("click", () => {
+      body.classList.toggle("dark-mode");
+      toggleBtn.textContent = body.classList.contains("dark-mode") ? "☀️" : "🌙";
+    });
+  </script>
+
+  
+
+</body>
+</html>
